@@ -17,7 +17,11 @@ const doc = {
 };
 
 const outputFile = './swagger.json';
-const endpointsFiles = ['./server.js'];
+const endpointsFiles = [
+  './server.js',
+  './routes/authors.routes.js',
+  './routes/books.routes.js'
+];
 
 swaggerAutogen(outputFile, endpointsFiles, doc).then(() => {
   console.log('Swagger JSON generated with host:', doc.host);

@@ -12,6 +12,7 @@ app.use(express.json());
 
 // Simple health route
 app.get('/', (req, res) => {
+  /* #swagger.ignore = true */
   res.json({ message: 'Library API is running', docs: '/api-docs' });
 });
 

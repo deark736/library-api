@@ -13,16 +13,42 @@ router.get('/', ctrl.getAll);
    #swagger.parameters['id'] = { in: 'path', required: true } */
 router.get('/:id', ctrl.getById);
 
-/* #swagger.path = '/books' */
-/* #swagger.method = 'post'
-   #swagger.parameters['obj'] = { in: 'body', required: true } */
-router.post('/', ctrl.create);
+router.post('/', (req, res) => {
+  /* #swagger.parameters['obj'] = {
+        in: 'body',
+        required: true,
+        schema: {
+          title: "Clean Code",
+          authorId: "68d0177c50413afc5359590e",
+          isbn: "9780132350884",
+          genre: "Software Engineering",
+          publishedYear: 2008,
+          pages: 464,
+          inStock: true,
+          price: 39.99
+        }
+  } */
+  return ctrl.create(req, res);
+});
 
-/* #swagger.path = '/books/{id}' */
-/* #swagger.method = 'put'
-   #swagger.parameters['id'] = { in: 'path', required: true }
-   #swagger.parameters['obj'] = { in: 'body', required: true } */
-router.put('/:id', ctrl.update);
+router.put('/:id', (req, res) => {
+  /* #swagger.parameters['id'] = { in: 'path', required: true }
+     #swagger.parameters['obj'] = {
+        in: 'body',
+        required: true,
+        schema: {
+          title: "Clean Code",
+          authorId: "68d0177c50413afc5359590e",
+          isbn: "9780132350884",
+          genre: "Software Engineering",
+          publishedYear: 2008,
+          pages: 464,
+          inStock: true,
+          price: 39.99
+        }
+  } */
+  return ctrl.update(req, res);
+});
 
 /* #swagger.path = '/books/{id}' */
 /* #swagger.method = 'delete'
