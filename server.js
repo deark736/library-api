@@ -10,9 +10,8 @@ const port = process.env.PORT || 3000;
 
 app.use(express.json());
 
-// Simple health route
+/* #swagger.ignore = true */
 app.get('/', (req, res) => {
-  /* #swagger.ignore = true */
   res.json({ message: 'Library API is running', docs: '/api-docs' });
 });
 
@@ -30,9 +29,7 @@ app.use((err, _req, res, _next) => {
 });
 
 initDb()
-  .then(() => {
-    app.listen(port, () => console.log(`Server on http://localhost:${port}`));
-  })
+  .then(() => app.listen(port, () => console.log(`Server on http://localhost:${port}`)))
   .catch((err) => {
     console.error('DB init failed:', err);
     process.exit(1);

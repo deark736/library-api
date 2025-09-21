@@ -2,11 +2,7 @@
 const swaggerAutogen = require('swagger-autogen')();
 
 const doc = {
-  info: {
-    title: 'Library API',
-    description: 'CRUD API for Books and Authors (Week 03)',
-    version: '1.0.0'
-  },
+  info: { title: 'Library API', description: 'CRUD API for Books and Authors (Week 03)', version: '1.0.0' },
   host: 'library-api-9ez6.onrender.com',
   schemes: ['https'],
   basePath: '/',
@@ -18,7 +14,6 @@ const doc = {
 
 const outputFile = './swagger.json';
 const endpointsFiles = [
-  './server.js',
   './routes/authors.routes.js',
   './routes/books.routes.js'
 ];
