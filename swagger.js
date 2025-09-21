@@ -1,4 +1,3 @@
-// swagger.js
 const swaggerAutogen = require('swagger-autogen')();
 
 const doc = {
@@ -13,7 +12,9 @@ const doc = {
 };
 
 const outputFile = './swagger.json';
+// IMPORTANT: include server.js first so autogen sees the mount points
 const endpointsFiles = [
+  './server.js',
   './routes/authors.routes.js',
   './routes/books.routes.js'
 ];
