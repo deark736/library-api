@@ -1,51 +1,65 @@
 const router = require('express').Router();
 const ctrl = require('../controllers/authors.controller');
 
-/* #swagger.tags = ['Authors'] */
+// GET /authors
+router.get('/', (req, res) => {
+  /*  #swagger.tags = ['Authors']
+      #swagger.path = '/authors'
+  */
+  return ctrl.getAll(req, res);
+});
 
-/* #swagger.path = '/authors' */
-/* #swagger.method = 'get' */
-router.get('/', ctrl.getAll);
+// GET /authors/{id}
+router.get('/:id', (req, res) => {
+  /*  #swagger.tags = ['Authors']
+      #swagger.path = '/authors/{id}'
+      #swagger.parameters['id'] = { in: 'path', required: true, type: 'string' }
+  */
+  return ctrl.getById(req, res);
+});
 
-/* #swagger.path = '/authors/{id}' */
-/* #swagger.method = 'get'
-   #swagger.parameters['id'] = { in: 'path', required: true } */
-router.get('/:id', ctrl.getById);
-
+// POST /authors
 router.post('/', (req, res) => {
-  /* #swagger.parameters['obj'] = {
-        in: 'body',
-        required: true,
-        schema: {
+  /*  #swagger.tags = ['Authors']
+      #swagger.path = '/authors'
+      #swagger.parameters['obj'] = {
+        in: 'body', required: true, schema: {
           firstName: "Robert",
           lastName: "Martin",
           email: "unclebob@example.com",
           birthdate: "1952-12-05",
           country: "USA"
         }
-  } */
+      }
+  */
   return ctrl.create(req, res);
 });
 
+// PUT /authors/{id}
 router.put('/:id', (req, res) => {
-  /* #swagger.parameters['id'] = { in: 'path', required: true }
-     #swagger.parameters['obj'] = {
-        in: 'body',
-        required: true,
-        schema: {
+  /*  #swagger.tags = ['Authors']
+      #swagger.path = '/authors/{id}'
+      #swagger.parameters['id'] = { in: 'path', required: true, type: 'string' }
+      #swagger.parameters['obj'] = {
+        in: 'body', required: true, schema: {
           firstName: "Robert",
           lastName: "Martin",
           email: "unclebob@example.com",
           birthdate: "1952-12-05",
           country: "USA"
         }
-  } */
+      }
+  */
   return ctrl.update(req, res);
 });
 
-/* #swagger.path = '/authors/{id}' */
-/* #swagger.method = 'delete'
-   #swagger.parameters['id'] = { in: 'path', required: true } */
-router.delete('/:id', ctrl.remove);
+// DELETE /authors/{id}
+router.delete('/:id', (req, res) => {
+  /*  #swagger.tags = ['Authors']
+      #swagger.path = '/authors/{id}'
+      #swagger.parameters['id'] = { in: 'path', required: true, type: 'string' }
+  */
+  return ctrl.remove(req, res);
+});
 
 module.exports = router;

@@ -1,23 +1,29 @@
-// routes/books.routes.js
 const router = require('express').Router();
 const ctrl = require('../controllers/books.controller');
 
-/* #swagger.tags = ['Books'] */
+// GET /books
+router.get('/', (req, res) => {
+  /*  #swagger.tags = ['Books']
+      #swagger.path = '/books'
+  */
+  return ctrl.getAll(req, res);
+});
 
-/* #swagger.path = '/books' */
-/* #swagger.method = 'get' */
-router.get('/', ctrl.getAll);
+// GET /books/{id}
+router.get('/:id', (req, res) => {
+  /*  #swagger.tags = ['Books']
+      #swagger.path = '/books/{id}'
+      #swagger.parameters['id'] = { in: 'path', required: true, type: 'string' }
+  */
+  return ctrl.getById(req, res);
+});
 
-/* #swagger.path = '/books/{id}' */
-/* #swagger.method = 'get'
-   #swagger.parameters['id'] = { in: 'path', required: true } */
-router.get('/:id', ctrl.getById);
-
+// POST /books
 router.post('/', (req, res) => {
-  /* #swagger.parameters['obj'] = {
-        in: 'body',
-        required: true,
-        schema: {
+  /*  #swagger.tags = ['Books']
+      #swagger.path = '/books'
+      #swagger.parameters['obj'] = {
+        in: 'body', required: true, schema: {
           title: "Clean Code",
           authorId: "68d0177c50413afc5359590e",
           isbn: "9780132350884",
@@ -27,16 +33,18 @@ router.post('/', (req, res) => {
           inStock: true,
           price: 39.99
         }
-  } */
+      }
+  */
   return ctrl.create(req, res);
 });
 
+// PUT /books/{id}
 router.put('/:id', (req, res) => {
-  /* #swagger.parameters['id'] = { in: 'path', required: true }
-     #swagger.parameters['obj'] = {
-        in: 'body',
-        required: true,
-        schema: {
+  /*  #swagger.tags = ['Books']
+      #swagger.path = '/books/{id}'
+      #swagger.parameters['id'] = { in: 'path', required: true, type: 'string' }
+      #swagger.parameters['obj'] = {
+        in: 'body', required: true, schema: {
           title: "Clean Code",
           authorId: "68d0177c50413afc5359590e",
           isbn: "9780132350884",
@@ -46,13 +54,18 @@ router.put('/:id', (req, res) => {
           inStock: true,
           price: 39.99
         }
-  } */
+      }
+  */
   return ctrl.update(req, res);
 });
 
-/* #swagger.path = '/books/{id}' */
-/* #swagger.method = 'delete'
-   #swagger.parameters['id'] = { in: 'path', required: true } */
-router.delete('/:id', ctrl.remove);
+// DELETE /books/{id}
+router.delete('/:id', (req, res) => {
+  /*  #swagger.tags = ['Books']
+      #swagger.path = '/books/{id}'
+      #swagger.parameters['id'] = { in: 'path', required: true, type: 'string' }
+  */
+  return ctrl.remove(req, res);
+});
 
 module.exports = router;

@@ -10,8 +10,8 @@ const port = process.env.PORT || 3000;
 
 app.use(express.json());
 
-/* #swagger.ignore = true */
 app.get('/', (req, res) => {
+  /* #swagger.ignore = true */
   res.json({ message: 'Library API is running', docs: '/api-docs' });
 });
 
