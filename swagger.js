@@ -7,8 +7,8 @@ const doc = {
     description: 'CRUD API for Books and Authors (Week 03)',
     version: '1.0.0'
   },
-  host: 'localhost:3000',
-  schemes: ['http'],
+  host: 'library-api-9ez6.onrender.com',
+  schemes: ['https'],
   basePath: '/',
   tags: [
     { name: 'Books', description: 'Books CRUD' },
