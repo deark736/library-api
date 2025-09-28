@@ -1,5 +1,6 @@
 const router = require('express').Router();
 const ctrl = require('../controllers/authors.controller');
+const { ensureAuth } = require('../middleware/auth');
 
 // GET /authors
 router.get('/', (req, res) => {
@@ -18,10 +19,11 @@ router.get('/:id', (req, res) => {
   return ctrl.getById(req, res);
 });
 
-// POST /authors
-router.post('/', (req, res) => {
+// POST /authors (protected)
+router.post('/', ensureAuth, (req, res) => {
   /*  #swagger.tags = ['Authors']
       #swagger.path = '/authors'
+      #swagger.description = 'Requires login via /auth/github (browser will include session cookie).'
       #swagger.parameters['obj'] = {
         in: 'body', required: true, schema: {
           firstName: "Robert",
@@ -35,10 +37,11 @@ router.post('/', (req, res) => {
   return ctrl.create(req, res);
 });
 
-// PUT /authors/{id}
-router.put('/:id', (req, res) => {
+// PUT /authors/{id} (protected)
+router.put('/:id', ensureAuth, (req, res) => {
   /*  #swagger.tags = ['Authors']
       #swagger.path = '/authors/{id}'
+      #swagger.description = 'Requires login via /auth/github (browser will include session cookie).'
       #swagger.parameters['id'] = { in: 'path', required: true, type: 'string' }
       #swagger.parameters['obj'] = {
         in: 'body', required: true, schema: {
@@ -53,10 +56,11 @@ router.put('/:id', (req, res) => {
   return ctrl.update(req, res);
 });
 
-// DELETE /authors/{id}
-router.delete('/:id', (req, res) => {
+// DELETE /authors/{id} (protected)
+router.delete('/:id', ensureAuth, (req, res) => {
   /*  #swagger.tags = ['Authors']
       #swagger.path = '/authors/{id}'
+      #swagger.description = 'Requires login via /auth/github (browser will include session cookie).'
       #swagger.parameters['id'] = { in: 'path', required: true, type: 'string' }
   */
   return ctrl.remove(req, res);
